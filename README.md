@@ -55,7 +55,7 @@ import litellm
 from fallback_guard import FallbackBudget, GuardedRouter
 
 router = litellm.Router(
-    model_list=[...],          # "claude-sonnet" on Vertex, "claude-sonnet-bedrock" on Bedrock
+    model_list=[...],  # "claude-sonnet" on Vertex, "claude-sonnet-bedrock" on Bedrock
     num_retries=2,
     allowed_fails=3,
     cooldown_time=60,
@@ -70,7 +70,7 @@ guarded = GuardedRouter(
 
 resp = await guarded.acompletion(
     model="claude-sonnet",
-    team="search-agents",          # what the budget is keyed on
+    team="search-agents",  # what the budget is keyed on
     messages=[{"role": "user", "content": "hi"}],
 )
 ```
