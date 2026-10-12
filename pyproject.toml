@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "litellm-fallback-guard"
+version = "0.1.0"
+description = "Fallback rules for LiteLLM: fall back when the provider is sick, not when a team is."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Bharath Dasireddy" }]
+requires-python = ">=3.10"
+dependencies = ["litellm>=1.50"]
+keywords = ["litellm", "llm", "gateway", "fallback", "rate-limit"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Libraries",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.urls]
+Source = "https://github.com/Bhaddre/litellm-fallback-guard"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fallback_guard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = ["ignore::UserWarning:pydantic.*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
